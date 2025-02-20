@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useState } from 'react'
-import Link from 'next/link'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import DarkModeSwitch from './DarkModeSwitch'; // Asegúrate de que la ruta sea correcta
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header className="flex justify-between items-center p-4 max-w-6xl mx-auto">
@@ -20,7 +21,7 @@ export default function Header() {
       </Link>
 
       {/* Menú - Pantallas grandes */}
-      <nav className="hidden md:flex gap-6 text-lg font-medium">
+      <nav className="hidden md:flex gap-6 text-lg font-medium items-center">
         <ul className="flex gap-6 text-lg font-medium">
           <li>
             <Link href="/sign-in" className="hover:text-green-500 transition-colors duration-200">
@@ -43,11 +44,13 @@ export default function Header() {
             </Link>
           </li>
         </ul>
+        {/* Dark Mode Switch */}
+        <DarkModeSwitch />
       </nav>
 
       {/* Menú hamburguesa - Pantallas pequeñas */}
       <div className="md:hidden flex items-center" onClick={toggleMenu}>
-        <div className={`space-y-2 ${menuOpen ? "transform rotate-45" : ""}`}>
+        <div className={`space-y-2 ${menuOpen ? '' : ''}`}>
           <div className="w-6 h-1 bg-gray-500"></div>
           <div className="w-6 h-1 bg-gray-500"></div>
           <div className="w-6 h-1 bg-gray-500"></div>
@@ -55,7 +58,7 @@ export default function Header() {
       </div>
 
       {/* Menú desplegable en pantallas pequeñas */}
-      <div className={`absolute right-0 top-16 w-48 bg-white shadow-lg p-4 rounded-md ${menuOpen ? "block" : "hidden"} md:hidden`}>
+      <div className={`absolute right-0 top-16 w-48 bg-white shadow-lg p-4 rounded-md ${menuOpen ? 'block' : 'hidden'} md:hidden`}>
         <ul className="flex flex-col space-y-4">
           <li>
             <Link href="/sign-in" className="hover:text-green-500 transition-colors duration-200">
@@ -80,5 +83,5 @@ export default function Header() {
         </ul>
       </div>
     </header>
-  )
+  );
 }
